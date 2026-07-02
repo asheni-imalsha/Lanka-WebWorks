@@ -99,67 +99,116 @@ function useParallax() {
   return ref;
 }
 
+function useHeroScrollVars() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const distance = Math.max(1, window.innerHeight * 0.9 + rect.height);
+        const raw = (window.innerHeight - rect.top) / distance;
+        const progress = Math.max(0, Math.min(1, raw));
+        el.style.setProperty("--hero-progress", progress.toFixed(3));
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return ref;
+}
+
 
 function Home() {
   const [openService, setOpenService] = useState<Service | null>(null);
   const heroVisualRef = useParallax();
+  const heroSectionRef = useHeroScrollVars();
 
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" />
+      <section ref={heroSectionRef} className="relative overflow-hidden">
+        <div
+          className="grid-bg pointer-events-none absolute inset-0 opacity-60 transition-transform duration-300"
+          style={{ transform: "translate3d(0, calc(var(--hero-progress, 0) * -20px), 0) scale(calc(1 + var(--hero-progress, 0) * 0.015))" }}
+        />
         <div className="container-edge relative grid gap-12 pb-16 pt-10 md:pb-24 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-          <div className="relative z-10">
-            <SectionLabel number="01">INTRODUCING / CREATIVE DIGITAL STUDIO</SectionLabel>
-            <h1 className="mt-6 font-display text-[16vw] leading-[0.85] tracking-tight md:text-[12vw] lg:text-[11rem]">
-              LANKA<br />
-              WEB<span className="bg-primary px-3 text-primary-foreground">WORKS</span>
-            </h1>
-            <p className="mt-8 max-w-xl font-heading text-base tracking-[0.18em] text-foreground/80">
-              ★ YOUR DIGITAL PRESENCE STARTS HERE
-            </p>
-            <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-              Professional website design for Sri Lankan businesses. Modern, fast, mobile-friendly websites — engineered to grow your brand and convert visitors into customers.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to="/pricing" className="group inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-4 font-heading text-xs tracking-[0.2em] text-background transition hover:bg-primary hover:text-primary-foreground">
-                VIEW PACKAGES <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </Link>
-              <Link to="/contact" className="inline-flex items-center gap-3 rounded-full border border-foreground px-6 py-4 font-heading text-xs tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background">
-                FREE CONSULTATION
-              </Link>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground">
-              {["SEO Friendly", "Mobile Responsive", "Fast Loading", "Secure SSL", "Google Ready"].map((b) => (
-                <span key={b} className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary-foreground bg-foreground rounded-full p-0.5" /> {b}</span>
-              ))}
-            </div>
+          <div className="relative z-10" style={{ transform: "translate3d(0, calc(var(--hero-progress, 0) * 14px), 0)" }}>
+            <Reveal delay={40}><SectionLabel number="01">INTRODUCING / CREATIVE DIGITAL STUDIO</SectionLabel></Reveal>
+            <Reveal delay={130} direction="blur">
+              <h1 className="mt-6 font-display text-[16vw] leading-[0.85] tracking-tight md:text-[12vw] lg:text-[11rem]">
+                LANKA<br />
+                WEB<span className="bg-primary px-3 text-primary-foreground">WORKS</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={220} direction="up">
+              <p className="mt-8 max-w-xl font-heading text-base tracking-[0.18em] text-foreground/80">
+                ★ YOUR DIGITAL PRESENCE STARTS HERE
+              </p>
+            </Reveal>
+            <Reveal delay={280} direction="up">
+              <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
+                Professional website design for Sri Lankan businesses. Modern, fast, mobile-friendly websites — engineered to grow your brand and convert visitors into customers.
+              </p>
+            </Reveal>
+            <Reveal delay={360} direction="up">
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Link to="/pricing" className="group inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-4 font-heading text-xs tracking-[0.2em] text-background transition hover:bg-primary hover:text-primary-foreground">
+                  VIEW PACKAGES <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+                <Link to="/contact" className="inline-flex items-center gap-3 rounded-full border border-foreground px-6 py-4 font-heading text-xs tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background">
+                  FREE CONSULTATION
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={440} direction="up">
+              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground">
+                {["SEO Friendly", "Mobile Responsive", "Fast Loading", "Secure SSL", "Google Ready"].map((b) => (
+                  <span key={b} className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary-foreground bg-foreground rounded-full p-0.5" /> {b}</span>
+                ))}
+              </div>
+            </Reveal>
           </div>
 
           {/* Right visual */}
-          <div ref={heroVisualRef} className="relative aspect-square w-full max-w-[560px] justify-self-end" style={{ transform: "translateY(var(--pxy, 0))" }}>
+          <Reveal delay={180} direction="scale" className="w-full">
+            <div ref={heroVisualRef} className="relative aspect-square w-full max-w-[560px] justify-self-end" style={{ transform: "translate3d(0, calc(var(--pxy, 0) + var(--hero-progress, 0) * -18px), 0)" }}>
 
-            <div className="absolute inset-0 animate-spin-slow rounded-full border border-foreground/15" />
-            <div className="absolute inset-8 rounded-full border border-foreground/10" />
-            <div className="absolute inset-16 rounded-full border border-foreground/5" />
-            {/* Yellow disc */}
-            <div className="absolute left-1/2 top-1/2 h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 animate-float rounded-full bg-primary shadow-[0_30px_80px_-20px_rgba(239,255,0,0.5)]" />
-            {/* Glossy black sphere */}
-            <div className="absolute right-2 top-6 h-28 w-28 rounded-full bg-gradient-to-br from-foreground via-foreground to-foreground/70 shadow-2xl md:h-36 md:w-36">
-              <div className="absolute left-4 top-4 h-6 w-10 rounded-full bg-white/20 blur-sm" />
+              <div className="absolute inset-0 animate-spin-slow rounded-full border border-foreground/15" />
+              <div className="absolute inset-8 rounded-full border border-foreground/10" />
+              <div className="absolute inset-16 rounded-full border border-foreground/5" />
+              {/* Yellow disc */}
+              <div className="absolute left-1/2 top-1/2 h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 animate-float rounded-full bg-primary shadow-[0_30px_80px_-20px_rgba(239,255,0,0.5)]" />
+              {/* Glossy black sphere */}
+              <div className="absolute right-2 top-6 h-28 w-28 rounded-full bg-gradient-to-br from-foreground via-foreground to-foreground/70 shadow-2xl md:h-36 md:w-36">
+                <div className="absolute left-4 top-4 h-6 w-10 rounded-full bg-white/20 blur-sm" />
+              </div>
+              {/* Floating card */}
+              <div className="absolute bottom-4 left-0 w-56 rotate-[-6deg] rounded-md border border-border bg-background p-4 shadow-2xl">
+                <p className="font-heading text-[10px] tracking-[0.2em] text-foreground/50">CLIENT / LIVE</p>
+                <p className="mt-2 font-display text-xl">+ 250% organic</p>
+                <p className="text-xs text-muted-foreground">Search growth in 90 days</p>
+              </div>
+              {/* small badge */}
+              <div className="absolute right-0 bottom-16 grid h-20 w-20 animate-spin-slow place-items-center rounded-full bg-foreground text-background">
+                <span className="font-heading text-[9px] tracking-widest">★ AWARD ★ STUDIO ★</span>
+              </div>
             </div>
-            {/* Floating card */}
-            <div className="absolute bottom-4 left-0 w-56 rotate-[-6deg] rounded-md border border-border bg-background p-4 shadow-2xl">
-              <p className="font-heading text-[10px] tracking-[0.2em] text-foreground/50">CLIENT / LIVE</p>
-              <p className="mt-2 font-display text-xl">+ 250% organic</p>
-              <p className="text-xs text-muted-foreground">Search growth in 90 days</p>
-            </div>
-            {/* small badge */}
-            <div className="absolute right-0 bottom-16 grid h-20 w-20 animate-spin-slow place-items-center rounded-full bg-foreground text-background">
-              <span className="font-heading text-[9px] tracking-widest">★ AWARD ★ STUDIO ★</span>
-            </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Stats strip */}
@@ -169,11 +218,13 @@ function Home() {
             ["100%", "Mobile Friendly"],
             ["1st", "Page SEO Targets"],
             ["3-5d", "Fast Delivery"],
-          ].map(([v, l]) => (
-            <div key={l}>
-              <p className="font-display text-5xl md:text-6xl">{v}</p>
-              <p className="mt-1 font-heading text-[10px] tracking-[0.2em] text-muted-foreground">{l}</p>
-            </div>
+          ].map(([v, l], i) => (
+            <Reveal key={l} delay={i * 80} direction="up">
+              <div>
+                <p className="font-display text-5xl md:text-6xl">{v}</p>
+                <p className="mt-1 font-heading text-[10px] tracking-[0.2em] text-muted-foreground">{l}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -183,32 +234,37 @@ function Home() {
       {/* SERVICES */}
       <section className="container-edge py-24 md:py-32">
         <div className="grid gap-10 md:grid-cols-[1fr_1.5fr] md:items-end">
-          <div>
-            <SectionLabel number="02">SERVICES</SectionLabel>
-            <h2 className="mt-6 font-display text-6xl leading-[0.9] md:text-8xl">
-              WHAT WE<br /><span className="text-foreground/30">CRAFT.</span>
-            </h2>
-          </div>
-          <p className="text-lg text-muted-foreground md:text-xl">
-            From a single landing page to a full digital ecosystem — we design, build and maintain websites that your customers love and Google notices.
-          </p>
+          <Reveal direction="left">
+            <div>
+              <SectionLabel number="02">SERVICES</SectionLabel>
+              <h2 className="mt-6 font-display text-6xl leading-[0.9] md:text-8xl">
+                WHAT WE<br /><span className="text-foreground/30">CRAFT.</span>
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80} direction="right">
+            <p className="text-lg text-muted-foreground md:text-xl">
+              From a single landing page to a full digital ecosystem — we design, build and maintain websites that your customers love and Google notices.
+            </p>
+          </Reveal>
         </div>
 
         <div className="mt-16 divide-y divide-border border-y border-border">
           {SERVICES.map((s, i) => (
-            <button
-              key={s.name}
-              type="button"
-              onClick={() => setOpenService(s)}
-              className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-6 py-6 text-left transition-colors hover:bg-foreground hover:text-background md:py-8"
-            >
-              <span className="font-heading text-sm tracking-[0.2em] opacity-60">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="font-display text-3xl tracking-wide transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">{s.name}</h3>
-              <span className="flex items-center gap-3">
-                <span className="hidden font-heading text-[10px] tracking-[0.25em] opacity-0 transition-opacity duration-500 group-hover:opacity-70 md:inline">VIEW DETAILS</span>
-                <ArrowUpRight className="h-5 w-5 transition-transform duration-500 group-hover:rotate-45 md:h-7 md:w-7" />
-              </span>
-            </button>
+            <Reveal key={s.name} delay={(i % 6) * 60} direction="up">
+              <button
+                type="button"
+                onClick={() => setOpenService(s)}
+                className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-6 py-6 text-left transition-colors hover:bg-foreground hover:text-background md:py-8"
+              >
+                <span className="font-heading text-sm tracking-[0.2em] opacity-60">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="font-display text-3xl tracking-wide transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">{s.name}</h3>
+                <span className="flex items-center gap-3">
+                  <span className="hidden font-heading text-[10px] tracking-[0.25em] opacity-0 transition-opacity duration-500 group-hover:opacity-70 md:inline">VIEW DETAILS</span>
+                  <ArrowUpRight className="h-5 w-5 transition-transform duration-500 group-hover:rotate-45 md:h-7 md:w-7" />
+                </span>
+              </button>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -291,12 +347,14 @@ function Home() {
               ["Transparent Pricing", "Clear packages. No surprise invoices. Ever."],
               ["Priority Service", "Quick turnarounds, honest updates, calm execution."],
               ["Affordable", "Premium quality at prices that respect your budget."],
-            ].map(([t, d]) => (
-              <div key={t} className="group bg-[#0f0f0f] p-8 transition-colors hover:bg-[#151515] md:p-10">
-                <div className="flex items-center gap-3 text-primary"><span className="h-px w-8 bg-primary" /> <span className="font-heading text-[10px] tracking-[0.25em]">●</span></div>
-                <h3 className="mt-4 font-display text-3xl">{t}</h3>
-                <p className="mt-3 text-sm text-white/60">{d}</p>
-              </div>
+            ].map(([t, d], i) => (
+              <Reveal key={t} delay={(i % 3) * 80} direction="up">
+                <div className="group bg-[#0f0f0f] p-8 transition-colors hover:bg-[#151515] md:p-10">
+                  <div className="flex items-center gap-3 text-primary"><span className="h-px w-8 bg-primary" /> <span className="font-heading text-[10px] tracking-[0.25em]">●</span></div>
+                  <h3 className="mt-4 font-display text-3xl">{t}</h3>
+                  <p className="mt-3 text-sm text-white/60">{d}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -386,20 +444,22 @@ function Home() {
             { name: "Business", price: "45,000", orig: "60,000", desc: "Growing brands needing room to expand.", featured: false },
             { name: "Premium", price: "75,000", orig: "95,000", desc: "Full editorial site with advanced SEO.", featured: true },
             { name: "Enterprise", price: "150,000+", desc: "Custom builds for complex requirements." },
-          ].map((p) => (
-            <div key={p.name} className={`relative border p-7 ${p.featured ? "border-foreground bg-foreground text-background" : "border-border"}`}>
-              {p.featured && <span className="absolute -top-3 left-7 bg-primary px-3 py-1 font-heading text-[10px] tracking-widest text-primary-foreground">FEATURED</span>}
-              <p className="font-heading text-[10px] tracking-[0.25em] opacity-60">{p.name.toUpperCase()}</p>
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-xs">Rs.</span>
-                <span className="font-display text-5xl">{p.price}</span>
+          ].map((p, i) => (
+            <Reveal key={p.name} delay={i * 80} direction="up">
+              <div className={`relative border p-7 ${p.featured ? "border-foreground bg-foreground text-background" : "border-border"}`}>
+                {p.featured && <span className="absolute -top-3 left-7 bg-primary px-3 py-1 font-heading text-[10px] tracking-widest text-primary-foreground">FEATURED</span>}
+                <p className="font-heading text-[10px] tracking-[0.25em] opacity-60">{p.name.toUpperCase()}</p>
+                <div className="mt-6 flex items-baseline gap-2">
+                  <span className="font-display text-xs">Rs.</span>
+                  <span className="font-display text-5xl">{p.price}</span>
+                </div>
+                {p.orig && <p className="mt-1 text-xs line-through opacity-50">Rs. {p.orig}</p>}
+                <p className="mt-6 text-sm opacity-80">{p.desc}</p>
+                <Link to="/pricing" className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-3 font-heading text-[11px] tracking-[0.2em] ${p.featured ? "bg-primary text-primary-foreground" : "border border-foreground text-foreground hover:bg-foreground hover:text-background"} transition`}>
+                  EXPLORE →
+                </Link>
               </div>
-              {p.orig && <p className="mt-1 text-xs line-through opacity-50">Rs. {p.orig}</p>}
-              <p className="mt-6 text-sm opacity-80">{p.desc}</p>
-              <Link to="/pricing" className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-3 font-heading text-[11px] tracking-[0.2em] ${p.featured ? "bg-primary text-primary-foreground" : "border border-foreground text-foreground hover:bg-foreground hover:text-background"} transition`}>
-                EXPLORE →
-              </Link>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -441,22 +501,24 @@ function Home() {
 
       {/* CTA */}
       <section className="container-edge py-24 md:py-32">
-        <div className="relative overflow-hidden border border-border bg-foreground p-10 text-background md:p-20">
-          <div className="grid-bg pointer-events-none absolute inset-0 opacity-10" />
-          <div className="relative grid gap-10 md:grid-cols-[1.6fr_1fr] md:items-end">
-            <h2 className="font-display text-6xl leading-[0.9] md:text-8xl">
-              READY TO BUILD<br />
-              YOUR <span className="text-primary">ONLINE PRESENCE?</span>
-            </h2>
-            <div>
-              <p className="text-background/70">Let's create a website that helps your business stand out and bring in more customers.</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link to="/contact" className="rounded-full bg-primary px-6 py-4 font-heading text-xs tracking-[0.2em] text-primary-foreground">FREE CONSULTATION</Link>
-                <a href="tel:+94729911398" className="rounded-full border border-background/30 px-6 py-4 font-heading text-xs tracking-[0.2em]">CALL NOW</a>
+        <Reveal direction="scale">
+          <div className="relative overflow-hidden border border-border bg-foreground p-10 text-background md:p-20">
+            <div className="grid-bg pointer-events-none absolute inset-0 opacity-10" />
+            <div className="relative grid gap-10 md:grid-cols-[1.6fr_1fr] md:items-end">
+              <h2 className="font-display text-6xl leading-[0.9] md:text-8xl">
+                READY TO BUILD<br />
+                YOUR <span className="text-primary">ONLINE PRESENCE?</span>
+              </h2>
+              <div>
+                <p className="text-background/70">Let's create a website that helps your business stand out and bring in more customers.</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link to="/contact" className="rounded-full bg-primary px-6 py-4 font-heading text-xs tracking-[0.2em] text-primary-foreground">FREE CONSULTATION</Link>
+                  <a href="tel:+94729911398" className="rounded-full border border-background/30 px-6 py-4 font-heading text-xs tracking-[0.2em]">CALL NOW</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );
