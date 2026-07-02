@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Award, Rocket, Sparkles } from "lucide-react";
 import { SectionLabel } from "../components/site/SectionLabel";
 import { Reveal } from "../components/site/Reveal";
-import asheniImg from "../assets/asheni.jpg.asset.json";
-import oshadhaImg from "../assets/oshadha.jpg.asset.json";
+import asheniImg from "../assets/asheni.jpg";
+import oshadhaImg from "../assets/oshadha.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -19,8 +19,8 @@ export const Route = createFileRoute("/about")({
 });
 
 const FOUNDERS = [
-  { name: "Asheni Imalsha", role: "Co-Founder & Web Developer", edu: "BSc (Hons) IT — Software Engineering, SLIIT", portfolio: "https://asheni-portfolio.vercel.app/", img: asheniImg.url },
-  { name: "Oshada Mihiran", role: "Co-Founder & Web Developer", edu: "BSc (Hons) IT — Software Engineering, SLIIT", portfolio: "https://mihiran.vercel.app/", img: oshadhaImg.url },
+  { name: "Asheni Imalsha", role: "Co-Founder & Web Developer", edu: "BSc (Hons) IT — Software Engineering, SLIIT", portfolio: "https://asheni-portfolio.vercel.app/", img: asheniImg },
+  { name: "Oshada Mihiran", role: "Co-Founder & Web Developer", edu: "BSc (Hons) IT — Software Engineering, SLIIT", portfolio: "https://mihiran.vercel.app/", img: oshadhaImg },
 ];
 
 const VALUES: [string, string][] = [

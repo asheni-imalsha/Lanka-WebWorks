@@ -4,22 +4,22 @@ import { ArrowUpRight, LayoutGrid } from "lucide-react";
 import { SectionLabel } from "../components/site/SectionLabel";
 import { Reveal } from "../components/site/Reveal";
 
-import fineDine from "../assets/works/fine-dine-byob.jpg.asset.json";
-import excelJourney from "../assets/works/excel-journey.jpg.asset.json";
-import elegantEdibles from "../assets/works/elegant-edibles.jpg.asset.json";
-import roseRetreat from "../assets/works/rose-retreat.jpg.asset.json";
-import editorialDream from "../assets/works/editorial-dream.jpg.asset.json";
-import titanGym from "../assets/works/titan-gym.jpg.asset.json";
-import tropicalHaven from "../assets/works/tropical-haven.jpg.asset.json";
-import wildWheel from "../assets/works/wild-wheel.jpg.asset.json";
-import radiantRetreat from "../assets/works/radiant-retreat.jpg.asset.json";
-import ceylonSparkle from "../assets/works/ceylon-sparkle.jpg.asset.json";
-import oceanWhisper from "../assets/works/ocean-whisper.jpg.asset.json";
-import artisanTales from "../assets/works/artisan-tales.jpg.asset.json";
-import trustedWheel from "../assets/works/trusted-wheel.jpg.asset.json";
-import beautyQueen from "../assets/works/beauty-queen.jpg.asset.json";
-import wagWellness from "../assets/works/wag-wellness.jpg.asset.json";
-import crestline from "../assets/works/crestline.jpg.asset.json";
+import fineDine from "../assets/works/fine-dine-byob.jpg";
+import excelJourney from "../assets/works/excel-journey.jpg";
+import elegantEdibles from "../assets/works/elegant-edibles.jpg";
+import roseRetreat from "../assets/works/rose-retreat.jpg";
+import editorialDream from "../assets/works/editorial-dream.jpg";
+import titanGym from "../assets/works/titan-gym.jpg";
+import tropicalHaven from "../assets/works/tropical-haven.jpg";
+import wildWheel from "../assets/works/wild-wheel.jpg";
+import radiantRetreat from "../assets/works/radiant-retreat.jpg";
+import ceylonSparkle from "../assets/works/ceylon-sparkle.jpg";
+import oceanWhisper from "../assets/works/ocean-whisper.jpg";
+import artisanTales from "../assets/works/artisan-tales.jpg";
+import trustedWheel from "../assets/works/trusted-wheel.jpg";
+import beautyQueen from "../assets/works/beauty-queen.jpg";
+import wagWellness from "../assets/works/wag-wellness.jpg";
+import crestline from "../assets/works/crestline.jpg";
 
 export const Route = createFileRoute("/works")({
   head: () => ({
@@ -37,22 +37,22 @@ export const Route = createFileRoute("/works")({
 type Project = { url: string; title: string; tag: string; desc: string; img: string; year?: string };
 
 const PROJECTS: Project[] = [
-  { url: "https://fine-dine-byob.lovable.app/", title: "Fine Dine BYOB", tag: "Restaurant", img: fineDine.url, year: "2025", desc: "A modern BYOB restaurant experience with elegant dining, signature menus and online reservations." },
-  { url: "https://excel-journey-site.lovable.app/", title: "Excel Journey", tag: "Education", img: excelJourney.url, year: "2025", desc: "Professional tuition site promoting courses, expert instructors and online enrollment." },
-  { url: "https://elegant-edibles-hub.lovable.app/", title: "Elegant Edibles", tag: "Restaurant", img: elegantEdibles.url, year: "2025", desc: "Premium cake and bakery showcase — custom cakes, desserts and celebration packages." },
-  { url: "https://tropical-haven-webs.lovable.app/", title: "Tropical Haven", tag: "Hotel", img: tropicalHaven.url, year: "2025", desc: "Luxury boutique hotel and villa site with immersive galleries and direct booking." },
-  { url: "https://editorial-dream-web.lovable.app/", title: "Editorial Dream", tag: "Portfolio", img: editorialDream.url, year: "2025", desc: "Creative photography portfolio with visual storytelling, featured galleries and testimonials." },
-  { url: "https://titan-gym-build.lovable.app/", title: "Titan Gym", tag: "Fitness", img: titanGym.url, year: "2025", desc: "Modern fitness center site with membership plans, trainers and class schedules." },
-  { url: "https://elegant-rose-retreat.lovable.app/", title: "Rose Retreat", tag: "Beauty", img: roseRetreat.url, year: "2025", desc: "Premium salon and beauty studio showcasing luxury treatments and online appointments." },
-  { url: "https://wild-wheel-adventures.lovable.app/", title: "Wild Wheel", tag: "Tourism", img: wildWheel.url, year: "2025", desc: "Adventure tourism with vehicle rentals, safari tours and chauffeur services." },
-  { url: "https://radiant-retreat-builder.lovable.app/", title: "Radiant Retreat", tag: "Wellness", img: radiantRetreat.url, year: "2025", desc: "Luxury Ayurveda, yoga and wellness retreat featuring holistic healing programs." },
-  { url: "https://ceylon-sparkle-site.lovable.app/", title: "Ceylon Sparkle", tag: "Jewelry", img: ceylonSparkle.url, year: "2025", desc: "Elegant gem and jewelry showcase — certified gemstones and luxury craftsmanship." },
-  { url: "https://ocean-whisper-adventures.lovable.app/", title: "Ocean Whisper", tag: "Tourism", img: oceanWhisper.url, year: "2025", desc: "Coastal adventure: surf camps, diving, whale watching, boat tours and bookings." },
-  { url: "https://srilanka-artisan-tales.lovable.app/", title: "Artisan Tales", tag: "Culture", img: artisanTales.url, year: "2025", desc: "Cultural crafts celebrating authentic Sri Lankan handmade products and heritage." },
-  { url: "https://trusted-wheel-pro.lovable.app/", title: "Trusted Wheel", tag: "Construction", img: trustedWheel.url, year: "2025", desc: "Construction company presenting services, completed projects and quote requests." },
-  { url: "https://beautyqueenfashion.com/", title: "Beauty Queen", tag: "Fashion", img: beautyQueen.url, year: "2025", desc: "Stylish fashion and beauty eCommerce featuring 3D printing and seamless shopping." },
-  { url: "https://wag-and-wellness-co.lovable.app/", title: "Wag & Wellness Co", tag: "Pet Care", img: wagWellness.url, year: "2025", desc: "Modern pet care combining veterinary services, grooming, boarding and online booking." },
-  { url: "https://crestline-developments.lovable.app/", title: "Crestline Developments", tag: "Construction", img: crestline.url, year: "2025", desc: "Premium construction and property development with residential and commercial portfolios." },
+  { url: "https://fine-dine-byob.lovable.app/", title: "Fine Dine BYOB", tag: "Restaurant", img: fineDine, year: "2025", desc: "A modern BYOB restaurant experience with elegant dining, signature menus and online reservations." },
+  { url: "https://excel-journey-site.lovable.app/", title: "Excel Journey", tag: "Education", img: excelJourney, year: "2025", desc: "Professional tuition site promoting courses, expert instructors and online enrollment." },
+  { url: "https://elegant-edibles-hub.lovable.app/", title: "Elegant Edibles", tag: "Restaurant", img: elegantEdibles, year: "2025", desc: "Premium cake and bakery showcase — custom cakes, desserts and celebration packages." },
+  { url: "https://tropical-haven-webs.lovable.app/", title: "Tropical Haven", tag: "Hotel", img: tropicalHaven, year: "2025", desc: "Luxury boutique hotel and villa site with immersive galleries and direct booking." },
+  { url: "https://editorial-dream-web.lovable.app/", title: "Editorial Dream", tag: "Portfolio", img: editorialDream, year: "2025", desc: "Creative photography portfolio with visual storytelling, featured galleries and testimonials." },
+  { url: "https://titan-gym-build.lovable.app/", title: "Titan Gym", tag: "Fitness", img: titanGym, year: "2025", desc: "Modern fitness center site with membership plans, trainers and class schedules." },
+  { url: "https://elegant-rose-retreat.lovable.app/", title: "Rose Retreat", tag: "Beauty", img: roseRetreat, year: "2025", desc: "Premium salon and beauty studio showcasing luxury treatments and online appointments." },
+  { url: "https://wild-wheel-adventures.lovable.app/", title: "Wild Wheel", tag: "Tourism", img: wildWheel, year: "2025", desc: "Adventure tourism with vehicle rentals, safari tours and chauffeur services." },
+  { url: "https://radiant-retreat-builder.lovable.app/", title: "Radiant Retreat", tag: "Wellness", img: radiantRetreat, year: "2025", desc: "Luxury Ayurveda, yoga and wellness retreat featuring holistic healing programs." },
+  { url: "https://ceylon-sparkle-site.lovable.app/", title: "Ceylon Sparkle", tag: "Jewelry", img: ceylonSparkle, year: "2025", desc: "Elegant gem and jewelry showcase — certified gemstones and luxury craftsmanship." },
+  { url: "https://ocean-whisper-adventures.lovable.app/", title: "Ocean Whisper", tag: "Tourism", img: oceanWhisper, year: "2025", desc: "Coastal adventure: surf camps, diving, whale watching, boat tours and bookings." },
+  { url: "https://srilanka-artisan-tales.lovable.app/", title: "Artisan Tales", tag: "Culture", img: artisanTales, year: "2025", desc: "Cultural crafts celebrating authentic Sri Lankan handmade products and heritage." },
+  { url: "https://trusted-wheel-pro.lovable.app/", title: "Trusted Wheel", tag: "Construction", img: trustedWheel, year: "2025", desc: "Construction company presenting services, completed projects and quote requests." },
+  { url: "https://beautyqueenfashion.com/", title: "Beauty Queen", tag: "Fashion", img: beautyQueen, year: "2025", desc: "Stylish fashion and beauty eCommerce featuring 3D printing and seamless shopping." },
+  { url: "https://wag-and-wellness-co.lovable.app/", title: "Wag & Wellness Co", tag: "Pet Care", img: wagWellness, year: "2025", desc: "Modern pet care combining veterinary services, grooming, boarding and online booking." },
+  { url: "https://crestline-developments.lovable.app/", title: "Crestline Developments", tag: "Construction", img: crestline, year: "2025", desc: "Premium construction and property development with residential and commercial portfolios." },
 ];
 
 const TAGS = Array.from(new Set(PROJECTS.map((p) => p.tag))).sort();

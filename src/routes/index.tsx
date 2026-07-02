@@ -5,16 +5,16 @@ import { Marquee } from "../components/site/Marquee";
 import { SectionLabel } from "../components/site/SectionLabel";
 import { Reveal } from "../components/site/Reveal";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "../components/ui/dialog";
-import fineDine from "../assets/works/fine-dine-byob.jpg.asset.json";
-import roseRetreat from "../assets/works/rose-retreat.jpg.asset.json";
-import tropicalHaven from "../assets/works/tropical-haven.jpg.asset.json";
-import titanGym from "../assets/works/titan-gym.jpg.asset.json";
-import excelJourney from "../assets/works/excel-journey.jpg.asset.json";
-import beautyQueen from "../assets/works/beauty-queen.jpg.asset.json";
-import wagWellness from "../assets/works/wag-wellness.jpg.asset.json";
-import ceylonSparkle from "../assets/works/ceylon-sparkle.jpg.asset.json";
-import crestline from "../assets/works/crestline.jpg.asset.json";
-import oceanWhisper from "../assets/works/ocean-whisper.jpg.asset.json";
+import fineDine from "../assets/works/fine-dine-byob.jpg";
+import roseRetreat from "../assets/works/rose-retreat.jpg";
+import tropicalHaven from "../assets/works/tropical-haven.jpg";
+import titanGym from "../assets/works/titan-gym.jpg";
+import excelJourney from "../assets/works/excel-journey.jpg";
+import beautyQueen from "../assets/works/beauty-queen.jpg";
+import wagWellness from "../assets/works/wag-wellness.jpg";
+import ceylonSparkle from "../assets/works/ceylon-sparkle.jpg";
+import crestline from "../assets/works/crestline.jpg";
+import oceanWhisper from "../assets/works/ocean-whisper.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,16 +54,16 @@ type BentoWork = { url: string; title: string; tag: string; img: string; classNa
  so screenshots read consistently across all sizes.
 */
 const WORKS: BentoWork[] = [
-  { url: "https://fine-dine-byob.lovable.app/", title: "Fine Dine BYOB", tag: "Restaurant", img: fineDine.url, tint: "#c2410c", desc: "Modern BYOB restaurant with reservations & signature menu.", className: "md:col-span-2 md:row-span-2" },
-  { url: "https://elegant-rose-retreat.lovable.app/", title: "Rose Retreat", tag: "Beauty", img: roseRetreat.url, tint: "#be185d", desc: "Luxury salon & spa with online booking.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://tropical-haven-webs.lovable.app/", title: "Tropical Haven", tag: "Hotel", img: tropicalHaven.url, tint: "#0f766e", desc: "Boutique villa with immersive gallery & direct booking.", className: "md:col-span-1 md:row-span-2" },
-  { url: "https://titan-gym-build.lovable.app/", title: "Titan Gym", tag: "Fitness", img: titanGym.url, tint: "#1e293b", desc: "Fitness studio with membership & class scheduling.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://excel-journey-site.lovable.app/", title: "Excel Journey", tag: "Education", img: excelJourney.url, tint: "#1d4ed8", desc: "Tuition institute promoting courses & enrollment.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://ocean-whisper-adventures.lovable.app/", title: "Ocean Whisper", tag: "Tourism", img: oceanWhisper.url, tint: "#0284c7", desc: "Coastal surf, diving & boat tour experiences.", className: "md:col-span-2 md:row-span-1" },
-  { url: "https://beautyqueenfashion.com/", title: "Beauty Queen", tag: "Fashion", img: beautyQueen.url, tint: "#a21caf", desc: "Fashion & beauty eCommerce with 3D printing.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://wag-and-wellness-co.lovable.app/", title: "Wag & Wellness", tag: "Pet Care", img: wagWellness.url, tint: "#d97706", desc: "Veterinary, grooming & boarding online booking.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://ceylon-sparkle-site.lovable.app/", title: "Ceylon Sparkle", tag: "Jewelry", img: ceylonSparkle.url, tint: "#7c2d12", desc: "Certified gemstones & luxury jewelry showcase.", className: "md:col-span-1 md:row-span-1" },
-  { url: "https://crestline-developments.lovable.app/", title: "Crestline Developments", tag: "Construction", img: crestline.url, tint: "#334155", desc: "Premium construction & property portfolios.", className: "md:col-span-2 md:row-span-1" },
+  { url: "https://fine-dine-byob.lovable.app/", title: "Fine Dine BYOB", tag: "Restaurant", img: fineDine, tint: "#c2410c", desc: "Modern BYOB restaurant with reservations & signature menu.", className: "md:col-span-2 md:row-span-2" },
+  { url: "https://elegant-rose-retreat.lovable.app/", title: "Rose Retreat", tag: "Beauty", img: roseRetreat, tint: "#be185d", desc: "Luxury salon & spa with online booking.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://tropical-haven-webs.lovable.app/", title: "Tropical Haven", tag: "Hotel", img: tropicalHaven, tint: "#0f766e", desc: "Boutique villa with immersive gallery & direct booking.", className: "md:col-span-1 md:row-span-2" },
+  { url: "https://titan-gym-build.lovable.app/", title: "Titan Gym", tag: "Fitness", img: titanGym, tint: "#1e293b", desc: "Fitness studio with membership & class scheduling.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://excel-journey-site.lovable.app/", title: "Excel Journey", tag: "Education", img: excelJourney, tint: "#1d4ed8", desc: "Tuition institute promoting courses & enrollment.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://ocean-whisper-adventures.lovable.app/", title: "Ocean Whisper", tag: "Tourism", img: oceanWhisper, tint: "#0284c7", desc: "Coastal surf, diving & boat tour experiences.", className: "md:col-span-2 md:row-span-1" },
+  { url: "https://beautyqueenfashion.com/", title: "Beauty Queen", tag: "Fashion", img: beautyQueen, tint: "#a21caf", desc: "Fashion & beauty eCommerce with 3D printing.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://wag-and-wellness-co.lovable.app/", title: "Wag & Wellness", tag: "Pet Care", img: wagWellness, tint: "#d97706", desc: "Veterinary, grooming & boarding online booking.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://ceylon-sparkle-site.lovable.app/", title: "Ceylon Sparkle", tag: "Jewelry", img: ceylonSparkle, tint: "#7c2d12", desc: "Certified gemstones & luxury jewelry showcase.", className: "md:col-span-1 md:row-span-1" },
+  { url: "https://crestline-developments.lovable.app/", title: "Crestline Developments", tag: "Construction", img: crestline, tint: "#334155", desc: "Premium construction & property portfolios.", className: "md:col-span-2 md:row-span-1" },
 ];
 
 const REVIEWS = [
